@@ -1,6 +1,7 @@
 window.onload= function() {
     styleSquare();
     insertingXandO();
+    getWinner();
 
 }
 
@@ -36,7 +37,7 @@ function insertingXandO(){
             }
 
             choices= choices - 1;
-
+            getWinner();
         }
         else if ((choices>0) && ((choices%2)==0) && (box.className=="hover")){
             box.className= "square O";
@@ -49,12 +50,12 @@ function insertingXandO(){
             }
 
             choices= choices -1 ;
-
+            getWinner();
         }
     });
     var gameStatus = document.getElementById("status");
     box.addEventListener('mouseover', function hoveringBoxon(){
-        if ((box.className=="square")){
+        if ((box.className=="square") && (gameStatus.className!="you-won")){
             box.className = "hover";
         }
         
@@ -64,6 +65,41 @@ function insertingXandO(){
         box.className = "square";
     });
     }
+}
+
+function getWinner(){
+
+    var winstatus = document.getElementById("status");
+
+    if (((entries['id0']=="X") && (entries['id1']=="X") && (entries['id2']=="X")) ||
+    ((entries['id3']=="X") && (entries['id4']=="X") && (entries['id5']=="X")) ||
+    ((entries['id6']=="X") && (entries['id7']=="X") && (entries['id8']=="X")) ||
+    ((entries['id0']=="X") && (entries['id3']=="X") && (entries['id6']=="X")) ||
+    ((entries['id1']=="X") && (entries['id4']=="X") && (entries['id7']=="X")) ||
+    ((entries['id2']=="X") && (entries['id5']=="X") && (entries['id8']=="X")) ||
+    ((entries['id0']=="X") && (entries['id4']=="X") && (entries['id8']=="X")) ||
+    ((entries['id2']=="X") && (entries['id4']=="X") && (entries['id6']=="X"))){
+  
+        winstatus.textContent = "Congratulations! X is the Winner!";
+        winstatus.className = "you-won";
+        choices = 0;
+
+    }
+    else if (((entries['id0']=="O") && (entries['id1']=="O") && (entries['id2']=="O")) ||
+    ((entries['id3']=="O") && (entries['id4']=="O") && (entries['id5']=="O")) ||
+    ((entries['id6']=="O") && (entries['id7']=="O") && (entries['id8']=="O")) ||
+    ((entries['id0']=="O") && (entries['id3']=="O") && (entries['id6']=="O")) ||
+    ((entries['id1']=="O") && (entries['id4']=="O") && (entries['id7']=="O")) ||
+    ((entries['id2']=="O") && (entries['id5']=="O") && (entries['id8']=="O")) ||
+    ((entries['id0']=="O") && (entries['id4']=="O") && (entries['id8']=="O")) ||
+    ((entries['id2']=="O") && (entries['id4']=="O") && (entries['id6']=="O"))){
+
+        winstatus.textContent = "Congratulations! O is the Winner!";
+        winstatus.className = "you-won";
+        choices = 0;
+    }
+        
+        
 }
 
 
