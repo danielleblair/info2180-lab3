@@ -2,6 +2,7 @@ window.onload= function() {
     styleSquare();
     insertingXandO();
     getWinner();
+    reloadGame();
 
 }
 
@@ -101,5 +102,32 @@ function getWinner(){
         
         
 }
+
+function reloadGame(){
+
+     let newgamebtn = document.querySelector(".btn");
+     newgamebtn.addEventListener('click', function newgamesq (){
+         var loadsquare1 = document.getElementById("board");
+         var sqdivs1 = loadsquare1.getElementsByTagName("div");
+     
+         for(var i=0; i<sqdivs1.length; i++) {
+             sqdivs1[i].className = "square";
+             sqdivs1[i].textContent = "";
+         }
+ 
+         choices = 9;
+ 
+         var statusgame = document.getElementById("status");
+         statusgame.textContent = "Move your mouse over a square and click to play an X or an O.";
+         statusgame.classList.remove("you-won");
+         for (const key in entries){
+                 entries[key] = "";
+             
+         }
+ 
+     });
+ 
+     
+ }
 
 
