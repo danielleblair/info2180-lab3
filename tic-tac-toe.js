@@ -25,7 +25,7 @@ function insertingXandO(){
    
     for (const box of boxes1) { 
     box.addEventListener('click', function selectChoice(){
-        if ((choices>0) && ((choices%2)!=0)){
+        if ((choices>0) && ((choices%2)!=0) && (box.className=="hover")){
             box.className= "square X";
             box.textContent = "X";
 
@@ -34,11 +34,11 @@ function insertingXandO(){
                     entries[key] = "X";
                 }
             }
-                       
+
             choices= choices - 1;
 
         }
-        else if ((choices>0) && ((choices%2)==0)){
+        else if ((choices>0) && ((choices%2)==0) && (box.className=="hover")){
             box.className= "square O";
             box.textContent = "O";
 
@@ -51,6 +51,17 @@ function insertingXandO(){
             choices= choices -1 ;
 
         }
+    });
+    var gameStatus = document.getElementById("status");
+    box.addEventListener('mouseover', function hoveringBoxon(){
+        if ((box.className=="square")){
+            box.className = "hover";
+        }
+        
+    });
+    box.addEventListener('mouseout', function hoveringBoxoff(){
+       if (box.className == "hover")
+        box.className = "square";
     });
     }
 }
